@@ -8,36 +8,27 @@ import { QuestionarioManagerService } from './questionario-manager.service';
 })
 export class AppComponent {
   
-  
-  dados = [];
   nome = null;
+  idade: number = null;
   sexo = null;
-  idade: number  = null;
   cidade = null;
-  id: any = null;
-  masculino: boolean = null;
-  feminino: boolean = null;
-  
 
-  salvar()  {
-    const dado = {
-      id: Math.random(),
-      nome: this.nome,
-      sexo: this.sexo,
-      idade: this.idade,
-      cidade: this.cidade,
-    };
-    this.dados.push(dado);
-    this.nome= null;
-    this.sexo= null;
-    this.idade= null;
-    this.cidade= null;
+  /**
+   * O construtor da classe
+   * @param dados Uma instânia de QuestionarioManagerService
+   */
+  constructor(private dados: QuestionarioManagerService) {
   }
 
-
-
-lista(){
-  return this.dados;
+  /**
+   * Obtém os dados vinculados ao formulário e interage com o serviço
+   * QuestionarioManagerService para salvar a notícia.
+   * 
+   * @param form Uma referência ao formulário declarado no template
+   */
+  salvar(form) {
+    this.dados.salvar(this.nome, this.idade, this.sexo, this.cidade);
+    form.reset();
   }
 
 }
