@@ -8,6 +8,7 @@ export class QuestionarioManagerService {
   
   dados = [];
   proximoId = 1;
+  cidades = ['Palmas','Paraiso do Tocantins','Porto Nacional'];
 
   
   constructor() { }
@@ -36,7 +37,6 @@ export class QuestionarioManagerService {
       cidade: cidade,
     };
 
-
     this.dados.push(dado);
 
     this.proximoId++;
@@ -47,12 +47,24 @@ export class QuestionarioManagerService {
     return this.dados;
   }
 
-  /**
-   * Retorna a lista das categorias de notícias.
-   */
-  /*listaDeCategorias() {
-    return this.categorias;
-  }*/
+
+  listaDasCidades() {
+    return this.cidades;
+  }
+
+  estatisticasDeCidade() {
+    let estatisticas = [];
+    let estatisticasIdx = {};
+    for (const cidade of this.cidades) {
+      estatisticasIdx[cidade] = estatisticas.length;
+      estatisticas.push({ nome: cidade, valor: 0 });
+    }
+    for (const dado of this.dados) {
+      estatisticas[estatisticasIdx[dado.cidade]].valor++;
+    }
+    return estatisticas;
+  }
+
 
   /**
    * Calcula e retorna as estatísticas das notícias
