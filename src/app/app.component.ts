@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuestionarioManagerService } from './questionario-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -6,12 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
+  
   dados = [];
   nome = null;
   sexo = null;
   idade: number  = null;
   cidade = null;
   id: any = null;
+  masculino: boolean = null;
+  feminino: boolean = null;
   
 
   salvar()  {
@@ -27,10 +32,13 @@ export class AppComponent {
     this.sexo= null;
     this.idade= null;
     this.cidade= null;
-}
+  }
+
+
 
 lista(){
   return this.dados;
   }
 
 }
+

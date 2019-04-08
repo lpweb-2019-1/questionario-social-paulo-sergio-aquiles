@@ -42,7 +42,7 @@
         </select>
     </div>
 
-
+    
 
     <li *ngFor="let dado of dados">
           {{ dado.nome}}
@@ -51,6 +51,7 @@
           {{dado.cidade}}
         
     </li>
+
     <div>
       <button type="submit" [disabled]="!cadastro.form.valid" class="btn btn-primary">Salvar</button>
     </div>
