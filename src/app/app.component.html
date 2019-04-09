@@ -1,0 +1,62 @@
+<div class="container">
+    <h1>Questionário Social</h1>
+   
+  <h2> Cadastrar Dados</h2>
+    <form #cadastro="ngForm" (submit)="salvar(cadastro)">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" [(ngModel)]="nome" class="form-control form-control-lg"
+          #campo_nome="ngModel" required minlength="5" maxlength="140" appTituloUnicoValidator
+          [class.is-invalid]="campo_nome.invalid && (campo_nome.dirty || campo_nome.touched)">
+        <small class="form-text text-muted">Nome Completo.</small>
+        <div *ngIf="campo_nome.invalid && (campo_nome.dirty || campo_nome.touched)" class="invalid-feedback">
+          <span *ngIf="campo_nome.errors.required">
+            O Nome é obrigatório.
+          </span>
+          <span *ngIf="campo_nome.errors.minlength">
+            O Nome precisa ter, pelo menos, 5 caracteres.
+          </span>
+          <span *ngIf="campo_nome.errors.maxlength">
+            O Nome deve ter, no máximo, 140 caracteres.
+          </span>
+        </div>
+      </div>
+        <label for="sexo" name="sexo">Sexo:</label><br>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" for="sexo">Masculino&nbsp;</label>
+          <input class="form-check-input" type="radio" name="sexo"  value="masculino" [(ngModel)]="sexo" required>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" for="sexo">Feminino&nbsp;</label>
+          <input class="form-check-input" type="radio" name="sexo" value="feminino"  [(ngModel)]="sexo" required>
+        </div>
+      <div>
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" placeholder="idade" name="idade" [(ngModel)]="idade" class="form-control form-control-lg" required><br>
+      </div>
+      <div style="left:-17px" class="form-group col-md-4">
+        <label for="cidade">Cidade</label>
+        <select id="cidade" name="cidade" class="form-control" [(ngModel)]="cidade"  required>
+          <option *ngFor="let cidade of dados.listaDasCidades()">{{ cidade }}</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" [disabled]="!cadastro.form.valid">Salvar</button>&nbsp;
+        <button type="reset" class="btn btn-secondary" formnovalidate>Limpar</button>
+      </div>
+    </form>
+
+    <h2>Estatisticas</h2>
+    <div>Nome da Pessoa mais nova:
+      <span>
+        {{ dados.PessoaMaisNova()?.nome }}
+      </span>
+    </div>
+    <div>Nome da Pessoa mais velha:
+      <span>
+        {{ dados.PessoaMaisVelha()?.nome }}
+      </span>
+    </div>
+    
+
+  </div>
