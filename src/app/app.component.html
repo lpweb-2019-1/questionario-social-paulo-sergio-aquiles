@@ -4,8 +4,8 @@
   <h2> Cadastrar Dados</h2>
     <form #cadastro="ngForm" (submit)="salvar(cadastro)">
       <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" [(ngModel)]="nome" class="form-control form-control-lg"
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="nome" [(ngModel)]="nome" class="form-control form-control-lg"
           #campo_nome="ngModel" required minlength="5" maxlength="140" appTituloUnicoValidator
           [class.is-invalid]="campo_nome.invalid && (campo_nome.dirty || campo_nome.touched)">
         <small class="form-text text-muted">Nome Completo.</small>
@@ -32,7 +32,7 @@
         </div>
       <div>
         <label for="idade">Idade:</label>
-        <input type="number" id="idade" placeholder="idade" name="idade" [(ngModel)]="idade" class="form-control form-control-lg" required><br>
+        <input type="number" id="idade" min="0" placeholder="idade" name="idade" [(ngModel)]="idade" class="form-control form-control-lg" required><br>
       </div>
       <div style="left:-17px" class="form-group col-md-4">
         <label for="cidade">Cidade</label>
