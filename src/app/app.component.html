@@ -24,11 +24,11 @@
         <label for="sexo" name="sexo">Sexo:</label><br>
         <div class="form-check form-check-inline">
           <label class="form-check-label" for="sexo">Masculino&nbsp;</label>
-          <input class="form-check-input" type="radio" name="sexo"  value="masculino" [(ngModel)]="sexo" >
+          <input class="form-check-input" type="radio" name="sexo"  value="masculino" [(ngModel)]="sexo" required>
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label" for="sexo">Feminino&nbsp;</label>
-          <input class="form-check-input" type="radio" name="sexo" value="feminino"  [(ngModel)]="sexo" >
+          <input class="form-check-input" type="radio" name="sexo" value="feminino"  [(ngModel)]="sexo" required>
         </div>
       <div>
         <label for="idade">Idade:</label>
@@ -46,8 +46,17 @@
       </div>
     </form>
 
-    <div *ngFor="let cidade of dados.estatisticasDeCidade()">
-      {{ cidade.nome }} {{ cidade.valor }}
+    <h2>Estatisticas</h2>
+    <div>Nome da Pessoa mais nova:
+      <span>
+        {{ dados.PessoaMaisNova()?.nome }}
+      </span>
     </div>
+    <div>Nome da Pessoa mais velha:
+      <span>
+        {{ dados.PessoaMaisVelha()?.nome }}
+      </span>
+    </div>
+    
 
   </div>

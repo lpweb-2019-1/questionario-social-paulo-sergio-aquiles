@@ -52,32 +52,38 @@ export class QuestionarioManagerService {
     return this.cidades;
   }
 
-  estatisticasDeCidade() {
-    let estatisticas = [];
-    let estatisticasIdx = {};
-    for (const cidade of this.cidades) {
-      estatisticasIdx[cidade] = estatisticas.length;
-      estatisticas.push({ nome: cidade, valor: 0 });
+
+  PessoaMaisNova() {
+    let pessoa = null;
+    if (this.dados.length === 0) {
+      return pessoa;
     }
-    for (const dado of this.dados) {
-      estatisticas[estatisticasIdx[dado.cidade]].valor++;
+    let menorIdade = this.dados[0].idade;
+    pessoa = this.dados[0]
+    for (let i = 1; i < this.dados.length; i++){
+      if (menorIdade >= this.dados[i].idade){
+        menorIdade = this.dados[i].idade;
+        pessoa = this.dados[i];
+      }
     }
-    return estatisticas;
+    return pessoa;
+  }
+
+  PessoaMaisVelha() {
+    let pessoa = null;
+    if (this.dados.length === 0) {
+      return pessoa;
+    }
+    let maiorIdade = this.dados[0].idade;
+    pessoa = this.dados[0]
+    for (let i = 1; i < this.dados.length; i++){
+      if (maiorIdade <= this.dados[i].idade){
+        maiorIdade = this.dados[i].idade;
+        pessoa = this.dados[i];
+      }
+    }
+    return pessoa;
   }
 
 
-  /**
-   * Calcula e retorna as estatísticas das notícias
-   * em categorias, ou seja, para cada categoria de notícia,
-   * qual a quantidade de notícias da mesma.
-   */
-  /*
-  estatisticasDeCategorias() {
-    let estatisticas = [];
-    let estatisticasIdx = {};
-    for (const noticia of this.dados) {
-      estatisticas[estatisticasIdx[noticia.categoria]].valor++;
-    }
-    return estatisticas;
-  }*/
 }
