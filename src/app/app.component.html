@@ -49,14 +49,43 @@
     <h2>Estatisticas</h2>
     <div>Nome da Pessoa mais nova:
       <span>
-        {{ dados.PessoaMaisNova()?.nome }}
+        {{ dados.CalculoIdade().pessoa_N?.nome }}
       </span>
     </div>
     <div>Nome da Pessoa mais velha:
       <span>
-        {{ dados.PessoaMaisVelha()?.nome }}
+        {{ dados.CalculoIdade().pessoa_V?.nome }}
       </span>
     </div>
-    
+    --------------
+    <div>Média de idade das mulheres:
+        {{ dados.calcularMediaIdade().media_idade_mulheres }}
+    </div>
+    <div>Média de idade dos homens:
+        {{ dados.calcularMediaIdade().media_idade_homens }}
+    </div>
+    --------------
+    <div>Média de idade em Palmas:
+        {{ dados.calcularMediaCidade().palmas }}
+    </div>
+    <div>Média de idade em Paraiso do Tocantins:
+        {{ dados.calcularMediaCidade().paraiso }}
+    </div>
+    <div>Média de idade em Porto Nacional:
+        {{ dados.calcularMediaCidade().porto }}
+    </div>
+    --------------
+    <div>Porcentagem de homens e mulheres em Palmas:
+        {{ dados.calcularPorcentagemCidade().palmas_h }}
+        {{ dados.calcularPorcentagemCidade().palmas_m }}
+    </div>
+    <div>Porcentagem de homens e mulheres em Paraiso do Tocantins:
+        {{ dados.calcularPorcentagemCidade().paraiso_h }}
+        {{ dados.calcularPorcentagemCidade().paraiso_m }}
+    </div>
+    <div>Porcentagem de homens e mulheres em Porto Nacional:
+        {{ dados.calcularPorcentagemCidade().porto_h }}
+        {{ dados.calcularPorcentagemCidade().porto_m }}
+    </div>
 
   </div>
