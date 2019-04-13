@@ -1,12 +1,11 @@
 <div class="container">
-    <h1>Questionário Social</h1>
-   
+  <h1>Questionário Social</h1> 
   <h2> Cadastrar Dados</h2>
     <form #cadastro="ngForm" (submit)="salvar(cadastro)">
       <div class="form-group">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="nome" [(ngModel)]="nome" class="form-control form-control-lg"
-          #campo_nome="ngModel" required minlength="5" maxlength="140" appTituloUnicoValidator
+          #campo_nome="ngModel" required minlength="5" maxlength="30" appTituloUnicoValidator
           [class.is-invalid]="campo_nome.invalid && (campo_nome.dirty || campo_nome.touched)">
         <small class="form-text text-muted">Nome Completo.</small>
         <div *ngIf="campo_nome.invalid && (campo_nome.dirty || campo_nome.touched)" class="invalid-feedback">
@@ -15,9 +14,6 @@
           </span>
           <span *ngIf="campo_nome.errors.minlength">
             O Nome precisa ter, pelo menos, 5 caracteres.
-          </span>
-          <span *ngIf="campo_nome.errors.maxlength">
-            O Nome deve ter, no máximo, 140 caracteres.
           </span>
         </div>
       </div>
@@ -30,7 +26,8 @@
           <label class="form-check-label" for="sexo">Feminino&nbsp;</label>
           <input class="form-check-input" type="radio" name="sexo" value="feminino"  [(ngModel)]="sexo" required>
         </div>
-      <div>
+      
+      <div><br>
         <label for="idade">Idade:</label>
         <input type="number" id="idade" min="0" placeholder="idade" name="idade" [(ngModel)]="idade" class="form-control form-control-lg" required><br>
       </div>
@@ -44,48 +41,127 @@
         <button type="submit" class="btn btn-primary" [disabled]="!cadastro.form.valid">Salvar</button>&nbsp;
         <button type="reset" class="btn btn-secondary" formnovalidate>Limpar</button>
       </div>
-    </form>
+    </form><br>
 
-    <h2>Estatisticas</h2>
-    <div>Nome da Pessoa mais nova:
-      <span>
-        {{ dados.CalculoIdade().pessoa_N?.nome }}
-      </span>
-    </div>
-    <div>Nome da Pessoa mais velha:
-      <span>
-        {{ dados.CalculoIdade().pessoa_V?.nome }}
-      </span>
-    </div>
-    --------------
-    <div>Média de idade das mulheres:
-        {{ dados.calcularMediaIdade().media_idade_mulheres }}
-    </div>
-    <div>Média de idade dos homens:
-        {{ dados.calcularMediaIdade().media_idade_homens }}
-    </div>
-    --------------
-    <div>Média de idade em Palmas:
-        {{ dados.calcularMediaCidade().palmas }}
-    </div>
-    <div>Média de idade em Paraiso do Tocantins:
-        {{ dados.calcularMediaCidade().paraiso }}
-    </div>
-    <div>Média de idade em Porto Nacional:
-        {{ dados.calcularMediaCidade().porto }}
-    </div>
-    --------------
-    <div>Porcentagem de homens e mulheres em Palmas:
-        {{ dados.calcularPorcentagemCidade().palmas_h }}
-        {{ dados.calcularPorcentagemCidade().palmas_m }}
-    </div>
-    <div>Porcentagem de homens e mulheres em Paraiso do Tocantins:
-        {{ dados.calcularPorcentagemCidade().paraiso_h }}
-        {{ dados.calcularPorcentagemCidade().paraiso_m }}
-    </div>
-    <div>Porcentagem de homens e mulheres em Porto Nacional:
-        {{ dados.calcularPorcentagemCidade().porto_h }}
-        {{ dados.calcularPorcentagemCidade().porto_m }}
-    </div>
+    <table  class="table">
+      <thead align="center" class="thead-dark">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Pessoa mais Nova</th>
+        </tr>
+      </thead>
+      <tbody align="center">
+        <tr>
+          <th scope="row"></th>
+          <td>{{ dados.CalculoIdade().pessoa_N?.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-  </div>
+    <table  class="table">
+      <thead align="center" class="thead-dark">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Pessoa mais Velha</th>
+        </tr>
+      </thead>
+      <tbody align="center">
+        <tr>
+          <th scope="row"></th>
+          {{ dados.CalculoIdade().pessoa_V?.nome }}
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr align="center">
+        <th scope="col">#</th>
+        <th scope="col">Média de Idade dos Homens</th>
+        <th scope="col">Média de Idade das Mulheres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <th scope="row">1</th>
+        <td>{{ dados.calcularMediaIdade().media_idade_homens }}</td>
+        <td>{{ dados.calcularMediaIdade().media_idade_mulheres }}</td> 
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table class="table table-bordered">
+    <thead align="center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Média de Idade em Palmas</th>
+        <th scope="col">Média de Idade em Porto Nacional</th>
+        <th scope="col">Média de Idade em Paraíso do Tocantins</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <th scope="row">1</th>
+        <td>{{ dados.calcularMediaCidade().palmas }}</td>
+        <td>{{ dados.calcularMediaCidade().porto }}</td> 
+        <td>{{ dados.calcularMediaCidade().paraiso }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table class="table table-bordered">
+    <thead align="center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Porcentagens de Homens em Palmas</th>
+        <th scope="col">Porcentagens de Mulheres em Palmas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center" >
+        <th scope="row">1</th>
+        <td>{{ dados.calcularPorcentagemCidade().palmas_h }}%</td>
+        <td>{{ dados.calcularPorcentagemCidade().palmas_m }}%</td> 
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table class="table table-bordered">
+    <thead align="center" >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Porcentagens de Homens em Paraíso do Tocantins</th>
+        <th scope="col">Porcentagens de Mulheres em Paraíso do Tocantins</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center" >
+        <th scope="row">1</th>
+        <td>{{ dados.calcularPorcentagemCidade().paraiso_h }}%</td>
+        <td>{{ dados.calcularPorcentagemCidade().paraiso_m }}%</td> 
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table class="table table-bordered">
+      <thead align="center" >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Porcentagens de Homens em Porto Nacional</th>
+          <th scope="col">Porcentagens de Mulheres em Porto Nacional</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr align="center" >
+          <th scope="row">1</th>
+          <td>{{ dados.calcularPorcentagemCidade().porto_h }}%</td>
+          <td>{{ dados.calcularPorcentagemCidade().porto_m }}%</td> 
+        </tr>
+      </tbody>
+  </table>
+</div>

@@ -17,22 +17,7 @@ export class QuestionarioManagerService {
       this.dados = JSON.parse(localStorage.getItem('pessoas'));
     }
   }
-  
-
-  /**
-   * O método recebe os dados , cria um objeto e o adiciona
-   * na lista de dados
     
-   * @param nome nome
-   * @param idade idade
-   * @param sexo sexo*/
-  /**
-   * @param cidade() cidade
-   */
-
-   
-      
-   
   salvar(nome: string, idade: number, sexo: string, cidade: string) {
     const dado = {
       nome: nome,
